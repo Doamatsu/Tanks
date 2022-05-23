@@ -16,6 +16,13 @@ public class Tank{
     rect(x-40,y-50,80,50);
     arc(x,y-50,40,40,PI,PI+PI);
     fill(0,0,0);
-    circle(100,100,5);
+    circle(x,y,5);
+  }
+  void move(String direction){
+    if(direction.equals("right")){
+      x+=2;
+    }else if(direction.equals("left")){
+      x-=2;
+    }
   }
 }
