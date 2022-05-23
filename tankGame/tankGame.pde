@@ -1,5 +1,6 @@
 static Tank current;
 ArrayList<Tank>Tanks;
+final float rotation = 0.1;
 void setup(){
   size(1000,750);
   Tanks = new ArrayList<Tank>();
@@ -22,5 +23,11 @@ void keyPressed(){
   }
   if(key == 'd'){
     current.move("right");
+  }
+  if(key == 'w'){
+    current.move("gun right");
+  }
+  if(key == 's'){
+    current.move("gun left");
   }
 }
