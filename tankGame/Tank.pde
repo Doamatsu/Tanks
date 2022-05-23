@@ -8,8 +8,8 @@ public class Tank{
   }
   void display(){
     fill(c);
-    //rect(x-20,y-25,40,25);
-    //arc(x-10,y+25,20,10,);
+    rect(x-20,y-25,40,25);
+    arc(x,y-25,20,20,PI,PI+PI);
     fill(0,0,0);
     circle(100,100,5);
   }
