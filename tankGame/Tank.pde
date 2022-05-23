@@ -11,4 +11,11 @@ public class Tank{
     this(x_,y_);
     c = c_;
   }
+  void display(){
+    fill(c);
+    rect(x-40,y-50,80,50);
+    arc(x,y-50,40,40,PI,PI+PI);
+    fill(0,0,0);
+    circle(100,100,5);
+  }
 }
