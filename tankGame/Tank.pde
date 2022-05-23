@@ -13,8 +13,10 @@ public class Tank{
   }
   void display(){
     fill(c);
+    Gun gun = new Gun(x,y,c);
+    gun.display();
     rect(x-40,y-50,80,50);
-    arc(x,y-50,40,40,PI,PI+PI);
+    arc(x,y-50,40,40,PI,PI+PI); 
     fill(0,0,0);
     circle(x,y,5);
   }
