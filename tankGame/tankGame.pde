@@ -6,7 +6,7 @@ void setup() {
   Tanks = new ArrayList<Tank>();
   r = 0.01;
   Tank Tester = new Tank(100, 600, "P1", 50);
-  Tank Tester2 = new StandardTank(900, 600, #0000FF, "P 2", 70);
+  StandardTank Tester2 = new StandardTank(900, 600, #0000FF, "P 2", 70);
   Tanks.add(Tester);
   Tanks.add(Tester2);
   current = Tester;
