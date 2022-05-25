@@ -2,21 +2,34 @@ public class Tank{
   float x,y;
   color c;
   PShape gun;
-  public Tank(float x_,float y_){
+  private String user;
+  private int HP;
+  
+  public Tank(float x_,float y_, String name_, int HP_){
     x = x_;
     y = y_;
+    user = name_;
+    HP = HP_;
+    
     c = #FF0000;
-    gun = createShape(RECT,x-5,y-100,10,50);//gun
-    gun.setFill(c);
   }
-  public Tank(float x_, float y_, color c_){
-    this(x_,y_);
+  public Tank(float x_, float y_, color c_, String name_, int HP_){
+    this(x_,y_,name_,HP_);
     c = c_;
-    gun.setFill(c);
+  }
+  
+  int getHP(){//gets HP
+    return HP;
   }
   void display(){
+    noStroke();
     fill(c);//clears canvas
-    shape(gun);
+    pushMatrix();
+    translate(x-5,y-58);
+    rotate(r);
+    rect(0,0,70,10);
+    popMatrix();
+    
     rect(x-40,y-50,80,50); //creates the tank
     arc(x,y-50,40,40,PI,PI+PI); 
     fill(0,0,0);
@@ -28,16 +41,6 @@ public class Tank{
     }
     if(direction.equals("left")){
       x-=2;
-    }
-    if(direction.equals("gun right")){
-      gun.translate(gun.width/2, gun.height/2);
-      gun.rotate(rotation);
-      gun.translate(gun.width/2, gun.height/2);
-    }
-    if(direction.equals("gun left")){
-      gun.translate(gun.width/2, gun.height/2);
-      gun.rotate(-1*rotation);
-      gun.translate(gun.width/2, gun.height/2);
     }
   }
 }
