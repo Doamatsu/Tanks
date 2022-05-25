@@ -1,7 +1,7 @@
 public class Tank {
-  float x, y;
-  color c;
-  PShape gun;
+  private float x, y;
+  private color c;
+  private PShape gun;
   private String user;
   private int HP;
 
