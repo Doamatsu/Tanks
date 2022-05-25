@@ -1,46 +1,45 @@
 static Tank current;
 ArrayList<Tank>Tanks;
 float r;
-void setup(){
-  size(1000,750);
+void setup() {
+  size(1000, 750);
   Tanks = new ArrayList<Tank>();
   r = 0.01;
-  Tank Tester = new Tank(100,600,"P1", 50);
-  Tank Tester2 = new Tank(900,600,#0000FF,"P 2", 70);
+  Tank Tester = new Tank(100, 600, "P1", 50);
+  Tank Tester2 = new Tank(900, 600, #0000FF, "P 2", 70);
   Tanks.add(Tester);
   Tanks.add(Tester2);
   current = Tester;
 }
-void draw(){
+void draw() {
   background(255);
   for (Tank o : Tanks) {
-        o.display();
-      }
+    o.display();
+  }
   current.display();
 }
-void keyPressed(){
+void keyPressed() {
   //println(r);
-  if(key == 'a'){
+  if (key == 'a') {
     current.move("left");
   }
-  if(key == 'd'){
+  if (key == 'd') {
     current.move("right");
   }
-  if(key == 'w'){
+  if (key == 'w') {
     r -= .05;
-    if(r<-3.339998){
+    if (r<-3.339998) {
       r = -3.339998;
     }
   }
-  if(key == 's'){
+  if (key == 's') {
     r += .05;
     //move gun left
-    if(r<-3.339998){
+    if (r<-3.339998) {
       r = -3.339998;
     }
-    if(r > .04){
+    if (r > .04) {
       r = .01;
     }
   }
-
 }
