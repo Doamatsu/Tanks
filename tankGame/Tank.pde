@@ -2,14 +2,24 @@ public class Tank{
   float x,y;
   color c;
   PShape gun;
-  public Tank(float x_,float y_){
+  private String user;
+  private int HP;
+  
+  public Tank(float x_,float y_, String name_, int HP_){
     x = x_;
     y = y_;
+    user = name_;
+    HP = HP_;
+    
     c = #FF0000;
   }
-  public Tank(float x_, float y_, color c_){
-    this(x_,y_);
+  public Tank(float x_, float y_, color c_, String name_, int HP_){
+    this(x_,y_,name_,HP_);
     c = c_;
+  }
+  
+  int getHP(){//gets HP
+    return HP;
   }
   void display(){
     noStroke();
