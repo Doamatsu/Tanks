@@ -13,23 +13,26 @@ void setup() {
 }
 void draw() {
   background(255);
+  int incrementBox = 8;
   for (Tank o : Tanks) {
+    playerBox(width/incrementBox, height/incrementBox,o.getName(),o.getHP(),r);
     o.display();
   }
   current.display();
   
   //textbox
-  playerBox(125,10,"Doormatsu");
   
   
 }
 
-void playerBox(float x,float y,String name_){
+void playerBox(float x,float y,String name_, float, HP, float angle){
   fill(255,0,0);
   rect(x,y,250,92);
   fill(0);
+  textSize(15);
   text("Player 1: " + name_, x+10,y+20);
-  
+  text("HP: " + HP, x+10, y+40);
+  text("Angle: " + angle, x+10, y+60);
   
 }
 void keyPressed() {

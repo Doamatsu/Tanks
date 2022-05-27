@@ -2,13 +2,13 @@ public class Tank {
   private float x, y;
   private color c;
   private PShape gun;
-  private String user;
+  private String name;
   private int HP;
 
   public Tank(float x_, float y_, String name_, int HP_) {
     x = x_;
     y = y_;
-    user = name_;
+    name = name_;
     HP = HP_;
 
     c = #FF0000;
