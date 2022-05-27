@@ -3,23 +3,34 @@ public class Tank {
   private color c;
   private PShape gun;
   private String name;
-  private int HP;
+  private float HP;
+  private float r;
 
   public Tank(float x_, float y_, String name_, int HP_) {
     x = x_;
     y = y_;
     name = name_;
     HP = HP_;
-
+    r = .01;
     c = #FF0000;
   }
   public Tank(float x_, float y_, color c_, String name_, int HP_) {
     this(x_, y_, name_, HP_);
     c = c_;
   }
-
-  int getHP() {//gets HP
+  
+  //get Methods
+  String getName(){
+    return name;
+  }
+  float getHP() {//gets HP
     return HP;
+  }
+  color getColor(){
+    return c;
+  }
+  float getRotation(){
+    return r;
   }
   void display() {
     noStroke();

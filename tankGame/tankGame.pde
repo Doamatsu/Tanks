@@ -1,10 +1,8 @@
 static Tank current;
 ArrayList<Tank>Tanks;
-float r;
 void setup() {
   size(1000, 750);
   Tanks = new ArrayList<Tank>();
-  r = 0.01;
   Tank Tester = new Tank(100, 600, "P1", 50);
   StandardTank Tester2 = new StandardTank(900, 600, #0000FF, "P 2", 70);
   Tanks.add(Tester);
@@ -13,20 +11,20 @@ void setup() {
 }
 void draw() {
   background(255);
-  int incrementBox = 8;
+  float incrementBox = 0;
   for (Tank o : Tanks) {
-    playerBox(width/incrementBox, height/incrementBox,o.getName(),o.getHP(),r);
+    playerBox(width/8 + incrementBox * 275, 10,o.getName(),o.getHP(),o.getRotation(),o.getColor());
+    incrementBox++;
     o.display();
   }
   current.display();
-  
   //textbox
   
   
 }
 
-void playerBox(float x,float y,String name_, float, HP, float angle){
-  fill(255,0,0);
+void playerBox(float x,float y,String name_, float HP, float angle, color c){
+  fill(c);
   rect(x,y,250,92);
   fill(0);
   textSize(15);
@@ -44,19 +42,19 @@ void keyPressed() {
     current.move("right");
   }
   if (key == 'w') {
-    r -= .05;
-    if (r<-3.339998) {
-      r = -3.339998;
+    current.r -= .05;
+    if (current.r<-3.339998) {
+      current.r = -3.339998;
     }
   }
   if (key == 's') {
-    r += .05;
+    current.r += .05;
     //move gun left
-    if (r<-3.339998) {
-      r = -3.339998;
+    if (current.r<-3.339998) {
+      current.r = -3.339998;
     }
-    if (r > .04) {
-      r = .01;
+    if (current.r > .04) {
+      current.r = .01;
     }
   }
   
