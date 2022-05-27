@@ -18,6 +18,19 @@ void draw() {
   }
   current.display();
   
+  //textbox
+  playerBox(125,10,"Doormatsu");
+  
+  
+}
+
+void playerBox(float x,float y,String name_){
+  fill(255,0,0);
+  rect(x,y,250,92);
+  fill(0);
+  text("Player 1: " + name_, x+10,y+20);
+  
+  
 }
 void keyPressed() {
   //println(r);
@@ -43,4 +56,5 @@ void keyPressed() {
       r = .01;
     }
   }
+  
 }
