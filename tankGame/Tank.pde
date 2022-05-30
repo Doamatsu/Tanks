@@ -30,21 +30,21 @@ public class Tank {
     return c;
   }
   float getRotation(){
-    return r;
+    return abs(degrees(r));
   }
   void display() {
     noStroke();
     fill(c);//clears canvas
     pushMatrix();
-    translate(x-5, y-58);
+    translate(x-5, y-26);
     if (current == this) {
       rotate(r);
     }
-    rect(0, 0, 70, 10);
+    rect(0, 0, 35, 5);
     popMatrix();
 
-    rect(x-40, y-50, 80, 50); //creates the tank
-    arc(x, y-50, 40, 40, PI, PI+PI); 
+    rect(x-20, y-25, 40, 25); //creates the tank
+    arc(x, y-25, 26, 26, PI, PI+PI); 
     fill(0, 0, 0);
     circle(x, y, 5); //the point the tank is referenced
   }

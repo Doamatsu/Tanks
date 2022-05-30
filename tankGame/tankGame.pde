@@ -13,25 +13,22 @@ void draw() {
   background(255);
   float incrementBox = 0;
   for (Tank o : Tanks) {
-    playerBox(width/8 + incrementBox * 275, 10,o.getName(),o.getHP(),o.getRotation(),o.getColor());
+    playerBox(width/8 + incrementBox * 275, 10, o.getName(), o.getHP(), o.getRotation(), o.getColor());
     incrementBox++;
     o.display();
   }
   current.display();
   //textbox
-  
-  
 }
 
-void playerBox(float x,float y,String name_, float HP, float angle, color c){
+void playerBox(float x, float y, String name_, float HP, float angle, color c) {
   fill(c);
-  rect(x,y,250,92);
+  rect(x, y, 250, 92);
   fill(0);
   textSize(15);
-  text("Player 1: " + name_, x+10,y+20);
+  text("Player 1: " + name_, x+10, y+20);
   text("HP: " + HP, x+10, y+40);
   text("Angle: " + angle, x+10, y+60);
-  
 }
 void keyPressed() {
   //println(r);
@@ -57,5 +54,4 @@ void keyPressed() {
       current.r = .01;
     }
   }
-  
 }
