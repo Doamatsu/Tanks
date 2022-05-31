@@ -1,12 +1,21 @@
 public class Ammo {
   private float damage;
   private float x, y;
-  private float ry;
-
-  public Ammo(float x_, float y_) {
+  private float ry,rx;
+  private float r;
+  public Ammo(float x_, float y_,float radius) {
     x = x_;
     y = y_;
+    r = abs(degrees(radius));
+    rx = 10;
     damage = 10;
+    ry = (tan(radius))*10;
+    if (r>90) {
+      println("true");
+        ry *= -1;
+        rx*= -1;
+      }
+    println("ry: " + ry);
   }
 
   float getDamage() {
@@ -18,13 +27,11 @@ public class Ammo {
     if (shooting) {
       fill(0, 0, 0);
       circle(x, y, 10);
-      if (y<=200) {
-        ry *= -1;
-        y-=ry;
-      } else {
-        y-=ry;
-      }
-      x+=10;
+      //  y+=ry;
+      //} else {
+        y+=ry;
+      //}
+      x+=rx;
     }
   }
   //get methods
