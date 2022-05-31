@@ -70,10 +70,11 @@ public class Tank {
       for (Ammo o : Ammos) {
       //println("displaying");
       //println(Tanks.get(1).getX() + " " + Tanks.get(1).getY());
-      println(dist(o.getX(), o.getY(), Tanks.get(1).getX(), Tanks.get(1).getY()));
+      //println(dist(o.getX(), o.getY(), Tanks.get(1).getX(), Tanks.get(1).getY()));
       if(dist(o.getX(), o.getY(), Tanks.get(1).getX(), Tanks.get(1).getY()) <= 50){//if its close
+        Tanks.get(1).damage(o.getDamage());
         removeAmmo = true; //remove the ammo after to not get concurrent error
-        println("CLOSE");
+        //println("CLOSE");
       }
         
       o.display();
@@ -100,5 +101,8 @@ public class Tank {
   //remove method
   void removeAmmo(){
     Ammos.remove(0);
+  }
+  void damage(float damage){
+    HP-=damage;
   }
 }
