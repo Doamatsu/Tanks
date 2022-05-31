@@ -12,6 +12,9 @@ public class Ammo {
   float getDamage() {
     return damage;
   }
+  boolean isClose(Tank tank){
+    if(tank.
+  }
   void display() {
     
     if (shooting) {

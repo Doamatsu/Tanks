@@ -22,8 +22,14 @@ public class Tank {
     this(x_, y_, name_, HP_);
     c = c_;
   }
-
+  
   //get Methods
+  float getX(){
+    return x;
+  }
+  float getY(){
+    return y;
+  }
   String getName() {
     return name;
   }
