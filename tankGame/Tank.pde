@@ -6,6 +6,7 @@ public class Tank {
   private float r;
   public ArrayList<Ammo>Ammos;
   private float ammoX, ammoY;
+  boolean removeAmmo;
 
   public Tank(float x_, float y_, String name_, int HP_) {
     x = x_;
@@ -17,6 +18,7 @@ public class Tank {
     Ammos = new ArrayList<Ammo>();
     ammoX = x+30;
     ammoY = y-23;
+    removeAmmo =false;
   }
   public Tank(float x_, float y_, color c_, String name_, int HP_) {
     this(x_, y_, name_, HP_);
@@ -63,9 +65,23 @@ public class Tank {
     arc(x, y-25, 26, 26, PI, PI+PI); 
     fill(0, 0, 0);
     circle(x, y, 5); //the point the tank is referenced
-    for (Ammo o : Ammos) {
+    
+    if(Ammos.isEmpty()!=true){//if there's stuff in ammo
+      for (Ammo o : Ammos) {
       //println("displaying");
+      //println(Tanks.get(1).getX() + " " + Tanks.get(1).getY());
+      println(dist(o.getX(), o.getY(), Tanks.get(1).getX(), Tanks.get(1).getY()));
+      if(dist(o.getX(), o.getY(), Tanks.get(1).getX(), Tanks.get(1).getY()) <= 50){//if its close
+        removeAmmo = true; //remove the ammo after to not get concurrent error
+        println("CLOSE");
+      }
+        
       o.display();
+    }
+    }
+    if(removeAmmo){
+      removeAmmo = false;
+      removeAmmo();
     }
   }
   
@@ -80,5 +96,9 @@ public class Tank {
     if (direction.equals("left")) {
       x-=2;
     }
+  }
+  //remove method
+  void removeAmmo(){
+    Ammos.remove(0);
   }
 }

@@ -12,11 +12,9 @@ public class Ammo {
   float getDamage() {
     return damage;
   }
-  boolean isClose(Tank tank){
-    if(tank.
-  }
+
   void display() {
-    
+
     if (shooting) {
       fill(0, 0, 0);
       circle(x, y, 10);
@@ -28,5 +26,12 @@ public class Ammo {
       }
       x+=10;
     }
+  }
+  //get methods
+  float getX(){
+    return x;
+  }
+  float getY(){
+    return y;
   }
 }

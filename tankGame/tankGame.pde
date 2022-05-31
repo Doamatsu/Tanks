@@ -14,7 +14,7 @@ void setup() {
   current = Tester;
 }
 void draw() {
-  println(countdown);
+  //println(countdown);
   background(255);
   float incrementBox = 0;
   for (Tank o : Tanks) {
