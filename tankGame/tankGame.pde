@@ -5,11 +5,11 @@ int countdown;
 boolean tankRemove = false;
 
 void setup() {
-  size(900, 900);
+  size(800, 800);
   countdown = 0;
   Tanks = new ArrayList<Tank>();
   Tank Tester = new Tank(100, 600, #FF0000, "P1", 50);
-  Tank Tester2 = new Tank(800, 600, #0000FF, "P2", 50);
+  Tank Tester2 = new Tank(700, 600, #0000FF, "P2", 50);
   Tanks.add(Tester);
   Tanks.add(Tester2);
   current = Tester;
