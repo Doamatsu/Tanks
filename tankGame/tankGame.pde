@@ -2,13 +2,14 @@ static Tank current;
 ArrayList<Tank>Tanks;
 boolean shooting = false;
 int countdown;
+boolean tankRemove = false;
 
 void setup() {
-  size(1000, 750);
+  size(900, 900);
   countdown = 0;
   Tanks = new ArrayList<Tank>();
   Tank Tester = new Tank(100, 600, #FF0000, "P1", 50);
-  Tank Tester2 = new Tank(900, 600, #0000FF, "P2", 70);
+  Tank Tester2 = new Tank(800, 600, #0000FF, "P2", 70);
   Tanks.add(Tester);
   Tanks.add(Tester2);
   current = Tester;
@@ -17,10 +18,21 @@ void draw() {
   //println(countdown);
   background(255);
   float incrementBox = 0;
+  int i =0;
+  int removedOne = 0;
   for (Tank o : Tanks) {
     playerBox(width/8 + incrementBox * 275, 10, o.getName(), o.getHP(), o.getRotation(), o.getColor());
     incrementBox++;
+    if(o.getHP() <=0){
+      tankRemove = true;
+      removedOne = i;
+    }
     o.display();
+    i++;
+  }
+  if(tankRemove){
+    tankRemove = false;
+    Tanks.remove(removedOne);
   }
   current.display();
   if(shooting){
