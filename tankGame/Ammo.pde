@@ -11,11 +11,11 @@ public class Ammo {
     damage = 10;
     ry = (tan(radius))*10;
     if (r>90) {
-      println("true");
+      //println("true");
         ry *= -1;
         rx*= -1;
       }
-    println("ry: " + ry);
+    //println("ry: " + ry);
   }
 
   float getDamage() {

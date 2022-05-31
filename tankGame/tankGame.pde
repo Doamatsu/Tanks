@@ -9,39 +9,51 @@ void setup() {
   countdown = 0;
   Tanks = new ArrayList<Tank>();
   Tank Tester = new Tank(100, 600, #FF0000, "P1", 50);
-  Tank Tester2 = new Tank(800, 600, #0000FF, "P2", 70);
+  Tank Tester2 = new Tank(800, 600, #0000FF, "P2", 50);
   Tanks.add(Tester);
   Tanks.add(Tester2);
   current = Tester;
 }
 void draw() {
-  //println(countdown);
-  background(255);
-  float incrementBox = 0;
-  int i =0;
-  int removedOne = 0;
-  for (Tank o : Tanks) {
-    playerBox(width/8 + incrementBox * 275, 10, o.getName(), o.getHP(), o.getRotation(), o.getColor());
-    incrementBox++;
-    if(o.getHP() <=0){
-      tankRemove = true;
-      removedOne = i;
+  if (Tanks.size() == 1) {
+    background(255);
+    fill(0, 0, 0);
+    textSize(100);
+    text(Tanks.get(0).getName() + " WINS!!!", width/3, height/2);
+  } else {
+    background(255);
+    float incrementBox = 0;
+    int i =0;
+    int removedOne = 0;
+    for (Tank o : Tanks) {
+      playerBox(width/8 + incrementBox * 275, 10, o.getName(), o.getHP(), o.getRotation(), o.getColor());
+      incrementBox++;
+      if (o.getHP() <=0) {
+        tankRemove = true;
+        removedOne = i;
+      }
+      o.display();
+      i++;
     }
-    o.display();
-    i++;
+    if (tankRemove) {
+      tankRemove = false;
+      Tanks.remove(removedOne);
+    }
+    current.display();
+    if (shooting) {
+      countdown++;
+    }
+    if (countdown == 60) {
+      if (current == Tanks.get(0)) {
+        current = Tanks.get(1);
+      } else {
+        current = Tanks.get(0);
+      }
+      shooting = false;
+      countdown =0;
+    }
   }
-  if(tankRemove){
-    tankRemove = false;
-    Tanks.remove(removedOne);
-  }
-  current.display();
-  if(shooting){
-    countdown++;
-  }
-  if(countdown == 60){
-    shooting = false;
-    countdown =0;
-  }
+
   //textbox
 }
 
@@ -81,11 +93,11 @@ void keyPressed() {
       }
     }
   }
-  
+
   if (keyCode == ' ') {
-      if(!shooting){
-        shooting = true;
+    if (!shooting) {
+      shooting = true;
       current.shoot();
-      }
     }
+  }
 }

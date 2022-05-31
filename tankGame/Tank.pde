@@ -46,8 +46,11 @@ public class Tank {
   }
   void display() {
     noStroke();
+    if(current == this){
+      fill(0,0,0);
+      text("TURN", x,y-50);
+    }
     fill(c);//clears canvas
-
     pushMatrix();
     translate(x-5, y-26);
     if (current == this) {
@@ -64,18 +67,22 @@ public class Tank {
     rect(x-20, y-25, 40, 25); //creates the tank
     arc(x, y-25, 26, 26, PI, PI+PI); 
     fill(0, 0, 0);
-    circle(x, y, 5); //the point the tank is referenced
+    //circle(x, y, 5); //the point the tank is referenced
 
     if (Ammos.isEmpty()!=true) {//if there's stuff in ammo
       for (Ammo o : Ammos) {
+        for (Tank a : Tanks) {
+          if (a != this) {
+            if (dist(o.getX(), o.getY(), a.getX(), a.getY()) <= 50) {//if its close
+              a.damage(o.getDamage());
+              removeAmmo = true; //remove the ammo after to not get concurrent error
+              //println("CLOSE");
+            }
+          }
+        }
         //println("displaying");
         //println(Tanks.get(1).getX() + " " + Tanks.get(1).getY());
         //println(dist(o.getX(), o.getY(), Tanks.get(1).getX(), Tanks.get(1).getY()));
-        if (dist(o.getX(), o.getY(), Tanks.get(1).getX(), Tanks.get(1).getY()) <= 50) {//if its close
-          Tanks.get(1).damage(o.getDamage());
-          removeAmmo = true; //remove the ammo after to not get concurrent error
-          //println("CLOSE");
-        }
 
         o.display();
       }
@@ -87,7 +94,7 @@ public class Tank {
   }
 
   void shoot() {
-    Ammo ammo = new Ammo(ammoX, ammoY,r);
+    Ammo ammo = new Ammo(ammoX, ammoY, r);
     Ammos.add(ammo);
   }
   void move(String direction) {
