@@ -1,15 +1,20 @@
 static Tank current;
 ArrayList<Tank>Tanks;
+boolean shooting = false;
+int countdown;
+
 void setup() {
   size(1000, 750);
+  countdown = 0;
   Tanks = new ArrayList<Tank>();
-  Tank Tester = new Tank(100, 600, "P1", 50);
-  StandardTank Tester2 = new StandardTank(900, 600, #0000FF, "P 2", 70);
+  Tank Tester = new Tank(100, 600, #FF0000, "P1", 50);
+  Tank Tester2 = new Tank(900, 600, #0000FF, "P2", 70);
   Tanks.add(Tester);
   Tanks.add(Tester2);
   current = Tester;
 }
 void draw() {
+  println(countdown);
   background(255);
   float incrementBox = 0;
   for (Tank o : Tanks) {
@@ -18,6 +23,13 @@ void draw() {
     o.display();
   }
   current.display();
+  if(shooting){
+    countdown++;
+  }
+  if(countdown == 60){
+    shooting = false;
+    countdown =0;
+  }
   //textbox
 }
 
@@ -32,26 +44,36 @@ void playerBox(float x, float y, String name_, float HP, float angle, color c) {
 }
 void keyPressed() {
   //println(r);
-  if (key == 'a') {
-    current.move("left");
-  }
-  if (key == 'd') {
-    current.move("right");
-  }
-  if (key == 'w') {
-    current.r -= .05;
-    if (current.r<-3.339998) {
-      current.r = -3.339998;
+  //if a tank isn't shooting
+  if (shooting == false) {
+    if (key == 'a') {
+      current.move("left");
+    }
+    if (key == 'd') {
+      current.move("right");
+    }
+    if (key == 'w') {
+      current.r -= .05;
+      if (current.r<-3.339998) {
+        current.r = -3.339998;
+      }
+    }
+    if (key == 's') {
+      current.r += .05;
+      //move gun left
+      if (current.r<-3.339998) {
+        current.r = -3.339998;
+      }
+      if (current.r > .04) {
+        current.r = .01;
+      }
     }
   }
-  if (key == 's') {
-    current.r += .05;
-    //move gun left
-    if (current.r<-3.339998) {
-      current.r = -3.339998;
+  
+  if (keyCode == ' ') {
+      if(!shooting){
+        shooting = true;
+      current.shoot();
+      }
     }
-    if (current.r > .04) {
-      current.r = .01;
-    }
-  }
 }

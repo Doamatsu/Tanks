@@ -1,13 +1,29 @@
-public class Ammo{
+public class Ammo {
   private float damage;
-  
-  public Ammo(){
+  private float x, y;
+  private float ry;
+
+  public Ammo(float x_, float y_) {
+    x = x_;
+    y = y_;
     damage = 10;
   }
-  public Ammo(float damage_){
-    damage = damage_;
-  }
-  float getDamage(){
+
+  float getDamage() {
     return damage;
+  }
+  void display() {
+    
+    if (shooting) {
+      fill(0, 0, 0);
+      circle(x, y, 10);
+      if (y<=200) {
+        ry *= -1;
+        y-=ry;
+      } else {
+        y-=ry;
+      }
+      x+=10;
+    }
   }
 }

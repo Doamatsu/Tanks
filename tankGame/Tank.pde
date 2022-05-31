@@ -1,10 +1,11 @@
 public class Tank {
   private float x, y;
   private color c;
-  private PShape gun;
   private String name;
   private float HP;
   private float r;
+  public ArrayList<Ammo>Ammos;
+  private float ammoX, ammoY;
 
   public Tank(float x_, float y_, String name_, int HP_) {
     x = x_;
@@ -13,40 +14,58 @@ public class Tank {
     HP = HP_;
     r = .01;
     c = #FF0000;
+    Ammos = new ArrayList<Ammo>();
+    ammoX = x+30;
+    ammoY = y-23;
   }
   public Tank(float x_, float y_, color c_, String name_, int HP_) {
     this(x_, y_, name_, HP_);
     c = c_;
   }
-  
+
   //get Methods
-  String getName(){
+  String getName() {
     return name;
   }
   float getHP() {//gets HP
     return HP;
   }
-  color getColor(){
+  color getColor() {
     return c;
   }
-  float getRotation(){
+  float getRotation() {
     return abs(degrees(r));
   }
   void display() {
     noStroke();
     fill(c);//clears canvas
+    
     pushMatrix();
     translate(x-5, y-26);
     if (current == this) {
       rotate(r);
     }
     rect(0, 0, 35, 5);
+    fill(0, 0, 0);
+    circle(35, 3, 5);//point of bullet
+    ammoX = 35+screenX(0,0);
+    ammoY = 3 + screenY(0,0);
     popMatrix();
-
+    
+    fill(c);
     rect(x-20, y-25, 40, 25); //creates the tank
     arc(x, y-25, 26, 26, PI, PI+PI); 
     fill(0, 0, 0);
     circle(x, y, 5); //the point the tank is referenced
+    for (Ammo o : Ammos) {
+      //println("displaying");
+      o.display();
+    }
+  }
+  
+  void shoot() {
+    Ammo ammo = new Ammo(ammoX,ammoY);
+    Ammos.add(ammo);
   }
   void move(String direction) {
     if (direction.equals("right")) {
