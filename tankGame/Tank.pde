@@ -91,6 +91,7 @@ public class Tank {
       removeAmmo = false;
       removeAmmo();
     }
+    
   }
 
   void shoot() {

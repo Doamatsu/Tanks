@@ -3,13 +3,15 @@ ArrayList<Tank>Tanks;
 boolean shooting = false;
 int countdown;
 boolean tankRemove = false;
+Map map;
 
 void setup() {
   size(800, 800);
   countdown = 0;
   Tanks = new ArrayList<Tank>();
-  Tank Tester = new Tank(100, 600, #FF0000, "P1", 50);
-  Tank Tester2 = new Tank(700, 600, #0000FF, "P2", 50);
+  map = new Map();
+  Tank Tester = new Tank(100, 100, #FF0000, "P1", 50);
+  Tank Tester2 = new Tank(700, 100, #0000FF, "P2", 50);
   Tanks.add(Tester);
   Tanks.add(Tester2);
   current = Tester;
@@ -22,19 +24,11 @@ void draw() {
     text(Tanks.get(0).getName() + " WINS!!!", width/3, height/2);
   } else {
     background(255);
+    map.display();
     float incrementBox = 0;
     int i =0;
     int removedOne = 0;
-    for (Tank o : Tanks) {
-      playerBox(width/8 + incrementBox * 275, 10, o.getName(), o.getHP(), o.getRotation(), o.getColor());
-      incrementBox++;
-      if (o.getHP() <=0) {
-        tankRemove = true;
-        removedOne = i;
-      }
-      o.display();
-      i++;
-    }
+
     if (tankRemove) {
       tankRemove = false;
       Tanks.remove(removedOne);
@@ -52,6 +46,17 @@ void draw() {
       shooting = false;
       countdown =0;
     }
+    for (Tank o : Tanks) {
+      playerBox(width/8 + incrementBox * 275, 10, o.getName(), o.getHP(), o.getRotation(), o.getColor());
+      incrementBox++;
+      if (o.getHP() <=0) {
+        tankRemove = true;
+        removedOne = i;
+      }
+      o.display();
+      i++;
+    }
+    fill(255);
   }
 
   //textbox
