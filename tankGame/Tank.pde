@@ -1,3 +1,4 @@
+import java.util.*;
 public class Tank {
   private float x, y;
   private color c;
@@ -91,7 +92,6 @@ public class Tank {
       removeAmmo = false;
       removeAmmo();
     }
-    
   }
 
   void shoot() {
