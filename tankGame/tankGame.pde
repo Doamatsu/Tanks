@@ -50,6 +50,9 @@ void draw() {
     for (Tank o : Tanks) {
       playerBox(width/8 + incrementBox * 275, 10, o.getName(), o.getHP(), o.getRotation(), o.getColor());
       incrementBox++;
+      if(!map.touchY(o.getY())){
+        o.tankFall();
+      }
       if (o.getHP() <=0) {
         tankRemove = true;
         removedOne = i;

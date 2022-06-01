@@ -25,7 +25,10 @@ public class Tank {
     this(x_, y_, name_, HP_);
     c = c_;
   }
-
+  //change methods
+  void tankFall(){
+    y+=5;
+  }
   //get Methods
   float getX() {
     return x;
