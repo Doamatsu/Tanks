@@ -50,6 +50,7 @@ public class Tank {
   }
   void display() {
     noStroke();
+    text(x + " " + y,x,y-80);
     if(current == this){
       fill(0,0,0);
       text("TURN", x,y-50);

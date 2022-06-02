@@ -5,6 +5,7 @@ boolean shooting = false;
 int countdown;
 boolean tankRemove = false;
 Map map;
+boolean debug = true;
 
 void setup() {
   size(800, 800);
@@ -79,6 +80,9 @@ void playerBox(float x, float y, String name_, float HP, float angle, color c) {
 void keyPressed() {
   //println(r);
   //if a tank isn't shooting
+  if(key == 'j'){
+    debug = !debug;
+  }
   if (shooting == false) {
     if (key == 'a') {
       current.move("left");

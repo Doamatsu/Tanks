@@ -11,7 +11,7 @@ public class Map {
       }
     }
     for (int i = 0; i<map.length; i++) {
-      for (int j = 20; j<map.length; j++) {
+      for (int j = 30; j<map.length; j++) {
         map[i][j] = true;
       }
     }
@@ -24,7 +24,7 @@ public class Map {
           //println("i " + i + " j " + j);
           stroke(1);
           fill(#00FF00);
-          square(i*20, j*20, SQUARESIZE);
+          square(i*20, j*20, 20);
         }
       }
     }
@@ -42,8 +42,9 @@ public class Map {
   boolean touchY(float tankY) {
     for (int i = 0; i<map.length; i++) {
       for (int j = 0; j<map.length; j++) {
-        println(dist(0, tankY, 0, i));
-        if (map[i][j] == true && dist(0, tankY, 0, j) <=5) {
+        print(map[i][j]);
+        if (map[i][j] == true && dist(0, tankY, 0, j*20) <=0) {
+          println(true);
           return true;
         }
       }
