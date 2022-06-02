@@ -7,6 +7,7 @@ boolean tankRemove = false;
 Map map;
 boolean debug = true;
 
+
 void setup() {
   size(800, 800);
   countdown = 0;
@@ -50,7 +51,8 @@ void draw() {
     }
     for (Tank o : Tanks) {
       playerBox(width/8 + incrementBox * 275, 10, o.getName(), o.getHP(), o.getRotation(), o.getColor());
-      incrementBox++;
+      incrementBox++
+      ;
       if(!map.touchY(o.getY())){
         o.tankFall();
       }

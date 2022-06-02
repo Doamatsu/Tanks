@@ -29,7 +29,9 @@ public class Map {
       }
     }
   }
-
+  void AmmoTouch(float ammoX,float ammoY){
+    
+  }
   boolean touchY(float tankY) {//returns true if touching bottom of tank
     for (int i = 0; i<map.length; i++) {
       for (int j = 0; j<map.length; j++) {
@@ -53,6 +55,11 @@ public class Map {
       }
     }
     return false;
+  }
+  
+  //remove methods
+  void remove(int x_, int y_){
+    map[x_][y_] = false;
   }
   
 }
