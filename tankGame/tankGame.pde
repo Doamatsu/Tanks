@@ -6,8 +6,10 @@ int countdown;
 boolean tankRemove = false;
 Map map;
 boolean debug = true;
-boolean touchSide = false;
-
+boolean touchRight = false;
+boolean touchLeft = false
+color rightTouch = #000000;
+color leftTouch = #000000;
 
 void setup() {
   size(800, 800);

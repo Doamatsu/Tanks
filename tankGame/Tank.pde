@@ -79,10 +79,10 @@ public class Tank {
     if (current == this) {
       rotate(r);
     }
-    rect(0, 0, 35, 10);
+    rect(0, 0, 36, 10);
     fill(0, 0, 0);
-    circle(35, 3, 5);//point of bullet
-    ammoX = 35+screenX(0, 0);
+    circle(36, 3, 5);//point of bullet
+    ammoX = 35 + screenX(0, 0);
     ammoY = 3 + screenY(0, 0);
     popMatrix();
 
@@ -94,8 +94,12 @@ public class Tank {
     rightY = y -20;
     leftX = x -20;
     leftY = y -20;
+    fill(rightTouch);
+    circle(rightX,rightY,5);
+    fill(leftTouch);
+    circle(leftX,leftY,5);
     //CREATE VARIABLES FOR EDGES FOR DETECTION
-    
+    fill(c);
     arc(x, y-25, 26, 26, PI, PI+PI); 
     fill(0, 0, 0);
     //circle(x, y, 5); //the point the tank is referenced

@@ -37,6 +37,7 @@ public class Map {
           //println(true);
           map[i][j] = false;
           return true;
+          
         }
       }
     }
@@ -58,8 +59,13 @@ public class Map {
   boolean touchX(Tank tank) {
     for (int i = 0; i<map.length; i++) {
       for (int j = 0; j<map.length; j++) {
-        if (map[i][j] == true && ((tank.getRightX() == i*20 && tank.getRightY() == j*20))
-        || (tank.getLeftX() == i*20 && tank.getLeftY() == j *20)){
+        //if grass and (right vertex touches  or left vertex touches)
+        if (map[i][j] == true){
+          if(tank.getRightX() == i*20 && tank.getRightY() == j*20){
+            return true;
+          }
+          if(tank.getLeftX() == i*20 && tank.getLeftY() == j *20)){
+            return true;
           println(((tank.getRightX() == i*20 && tank.getRightY() == j*20))
         || (tank.getLeftX() == i*20 && tank.getLeftY() == j *20));
           return true;
