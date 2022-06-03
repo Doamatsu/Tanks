@@ -6,6 +6,7 @@ int countdown;
 boolean tankRemove = false;
 Map map;
 boolean debug = true;
+boolean touchSide = false;
 
 
 void setup() {
@@ -40,7 +41,7 @@ void draw() {
     if (shooting) {
       countdown++;
     }
-    if (countdown == 60) {
+    if (countdown == 20) {
       if (current == Tanks.get(0)) {
         current = Tanks.get(1);
       } else {
@@ -53,9 +54,15 @@ void draw() {
       playerBox(width/8 + incrementBox * 275, 10, o.getName(), o.getHP(), o.getRotation(), o.getColor());
       incrementBox++
       ;
-      if(!map.touchY(o.getY())){
+      if(!map.touchY(o.getY(),o.getX())){//fall if not touching floor
         o.tankFall();
       }
+      if(map.touchX(o.getX())){
+        touchSide = true;
+      }else{
+        touchSide = false;
+      }
+        
       if (o.getHP() <=0) {
         tankRemove = true;
         removedOne = i;
@@ -86,11 +93,13 @@ void keyPressed() {
     debug = !debug;
   }
   if (shooting == false) {
-    if (key == 'a') {
+    if(!touchSide){
+      if (key == 'a') {
       current.move("left");
     }
     if (key == 'd') {
       current.move("right");
+    }
     }
     if (key == 'w') {
       current.r -= .05;

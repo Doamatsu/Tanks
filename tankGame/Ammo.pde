@@ -7,7 +7,7 @@ public class Ammo {
     x = x_;
     y = y_;
     r = abs(degrees(radius));
-    rx = 10;
+    rx = 1;
     damage = 10;
     ry = (tan(radius))*10;
     if (r>90) {
@@ -21,7 +21,9 @@ public class Ammo {
   float getDamage() {
     return damage;
   }
-
+  boolean ammoTouch(){
+    return map.ammoTouch(x,y);
+  }
   void display() {
 
     if (shooting) {
