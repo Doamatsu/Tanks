@@ -10,6 +10,7 @@ public class Tank {
   boolean removeAmmo;
   private float rightX, rightY;
   private float leftX, leftY;
+  private boolean touchRight = false, touchLeft = false;
 
   public Tank(float x_, float y_, String name_, int HP_) {
     x = x_;

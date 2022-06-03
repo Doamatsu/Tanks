@@ -6,11 +6,6 @@ int countdown;
 boolean tankRemove = false;
 Map map;
 boolean debug = true;
-boolean touchRight = false;
-boolean touchLeft = false
-color rightTouch = #000000;
-color leftTouch = #000000;
-
 void setup() {
   size(800, 800);
   countdown = 0;
@@ -60,9 +55,7 @@ void draw() {
         o.tankFall();
       }
       if(map.touchX(o)){
-        touchSide = true;
-      }else{
-        touchSide = false;
+       //write things!!!!
       }
         
       if (o.getHP() <=0) {
@@ -95,13 +88,11 @@ void keyPressed() {
     debug = !debug;
   }
   if (shooting == false) {
-    if(touchSide == true){
       if (key == 'a') {
       current.move("left");
     }
     if (key == 'd') {
       current.move("right");
-    }
     }
     if (key == 'w') {
       current.r -= .05;

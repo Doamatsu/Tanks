@@ -64,11 +64,9 @@ public class Map {
           if(tank.getRightX() == i*20 && tank.getRightY() == j*20){
             return true;
           }
-          if(tank.getLeftX() == i*20 && tank.getLeftY() == j *20)){
+          if(tank.getLeftX() == i*20 && tank.getLeftY() == j *20){
             return true;
-          println(((tank.getRightX() == i*20 && tank.getRightY() == j*20))
-        || (tank.getLeftX() == i*20 && tank.getLeftY() == j *20));
-          return true;
+          }
         }
       }
     }
