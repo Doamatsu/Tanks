@@ -8,10 +8,16 @@ public class Tank {
   public ArrayList<Ammo>Ammos;
   private float ammoX, ammoY;
   boolean removeAmmo;
+  private float rightX, rightY;
+  private float leftX, leftY;
 
   public Tank(float x_, float y_, String name_, int HP_) {
     x = x_;
     y = y_;
+    rightX = x_ + 20;
+    rightY = y_ -20;
+    leftX = x_ -20;
+    leftY = y_ -20;
     name = name_;
     HP = HP_;
     r = .01;
@@ -30,6 +36,18 @@ public class Tank {
     y+=5;
   }
   //get Methods
+  float getRightX(){
+    return rightX;
+  }
+  float getRightY(){
+    return rightY;
+  }
+  float getLeftY(){
+    return leftY;
+  }
+  float getLeftX(){
+    return leftX;
+  }
   float getX() {
     return x;
   }
@@ -70,6 +88,14 @@ public class Tank {
 
     fill(c);
     rect(x-20, y-25, 40, 25); //creates the tank
+    
+    //vertexes for tank
+    rightX = x + 20;
+    rightY = y -20;
+    leftX = x -20;
+    leftY = y -20;
+    //CREATE VARIABLES FOR EDGES FOR DETECTION
+    
     arc(x, y-25, 26, 26, PI, PI+PI); 
     fill(0, 0, 0);
     //circle(x, y, 5); //the point the tank is referenced

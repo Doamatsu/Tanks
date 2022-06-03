@@ -54,10 +54,10 @@ void draw() {
       playerBox(width/8 + incrementBox * 275, 10, o.getName(), o.getHP(), o.getRotation(), o.getColor());
       incrementBox++
       ;
-      if(!map.touchY(o.getY(),o.getX())){//fall if not touching floor
+      if(!map.touchY(o)){//fall if not touching floor
         o.tankFall();
       }
-      if(map.touchX(o.getX())){
+      if(map.touchX(o)){
         touchSide = true;
       }else{
         touchSide = false;
@@ -93,7 +93,7 @@ void keyPressed() {
     debug = !debug;
   }
   if (shooting == false) {
-    if(!touchSide){
+    if(touchSide == true){
       if (key == 'a') {
       current.move("left");
     }

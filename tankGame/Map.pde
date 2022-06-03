@@ -4,7 +4,7 @@ public class Map {
   int SQUARESIZE = width/16;
   public Map() {
     map = new boolean[width/20][height/20];
-    println(map.length);
+    //println(map.length);
     for (int i = 0; i<map.length; i++) {
       for (int j = 0; j<map.length; j++) {
         map[i][j] = false; //sets everything to space for now
@@ -33,7 +33,7 @@ public class Map {
     for (int i = 0; i<map.length; i++) {
       for (int j = 0; j<map.length; j++) {
         //print(map[i][j]);
-        if (map[i][j] == true && dist(ammoX, ammoY, i*20, j*20) <=5) {
+        if (map[i][j] == true && dist(ammoX, ammoY, i*20, j*20) <=10) {
           //println(true);
           map[i][j] = false;
           return true;
@@ -42,11 +42,11 @@ public class Map {
     }
     return false;
   }
-  boolean touchY(float tankY,float tankX) {//returns true if touching bottom of tank
+  boolean touchY(Tank tank) {//returns true if touching bottom of tank
     for (int i = 0; i<map.length; i++) {
       for (int j = 0; j<map.length; j++) {
         //print(map[i][j]);
-        if (map[i][j] == true && dist(0, tankY, 0, j*20) <=0 && dist(tankX, 0, i*20, 0) <=10 ) {
+        if (map[i][j] == true && dist(0, tank.getY(), 0, j*20) <=0 && dist(tank.getX(), 0, i*20, 0) <=10 ) {
           
           //println(i + " " + j);
           return true;
@@ -55,12 +55,11 @@ public class Map {
     }
     return false;
   }
-  boolean touchX(float tankX) {
+  boolean touchX(Tank tank) {
     for (int i = 0; i<map.length; i++) {
       for (int j = 0; j<map.length; j++) {
-        //print(map[i][j]);
-        if (map[i][j] == true && dist(tankX, 0, i*20, 0) ==10) {
-           println(dist(tankX, 0, i*20, 0));
+        if (map[i][j] == true && ((tank.getRightX() == i*20 && tank.getRightY() == j*20))
+        || (tank.getLeftX() == i*20 && tank.getLeftY() == j *20)){
           return true;
         }
       }
