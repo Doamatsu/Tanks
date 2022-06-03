@@ -78,7 +78,7 @@ public class Tank {
       for (Ammo o : Ammos) {
         for (Tank a : Tanks) {
           if (a != this) {
-            if (dist(o.getX(), o.getY(), a.getX(), a.getY()) <= 50 ) {//if its close
+            if (dist(o.getX(), o.getY(), a.getX(), a.getY()) <= 20 ) {//if its close
               a.damage(o.getDamage());
               removeAmmo = true; //remove the ammo after to not get concurrent error
               //println("CLOSE");

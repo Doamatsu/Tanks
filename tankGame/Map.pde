@@ -48,7 +48,7 @@ public class Map {
         //print(map[i][j]);
         if (map[i][j] == true && dist(0, tankY, 0, j*20) <=0 && dist(tankX, 0, i*20, 0) <=10 ) {
           
-          println(i + " " + j);
+          //println(i + " " + j);
           return true;
         }
       }
@@ -59,8 +59,8 @@ public class Map {
     for (int i = 0; i<map.length; i++) {
       for (int j = 0; j<map.length; j++) {
         //print(map[i][j]);
-        if (map[i][j] == true && dist(tankX, 0, i*20, 0) <=0) {
-           println(i + " " + j);
+        if (map[i][j] == true && dist(tankX, 0, i*20, 0) ==10) {
+           println(dist(tankX, 0, i*20, 0));
           return true;
         }
       }

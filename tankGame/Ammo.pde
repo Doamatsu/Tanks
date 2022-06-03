@@ -7,7 +7,7 @@ public class Ammo {
     x = x_;
     y = y_;
     r = abs(degrees(radius));
-    rx = 1;
+    rx = 10;
     damage = 10;
     ry = (tan(radius))*10;
     if (r>90) {
