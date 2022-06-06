@@ -107,15 +107,15 @@ void keyPressed() {
     
     if (key == 'w') {
       current.r -= .05;
-      if (current.r<-3.339998) {
-        current.r = -3.339998;
+      if (current.r<-3.1399982) {
+        current.r = -3.1399982;
       }
     }
     if (key == 's') {
       current.r += .05;
       //move gun left
-      if (current.r<-3.339998) {
-        current.r = -3.339998;
+      if (current.r<-3.1399982) {
+        current.r = -3.1399982;
       }
       if (current.r > .04) {
         current.r = .01;

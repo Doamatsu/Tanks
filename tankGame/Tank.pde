@@ -78,7 +78,8 @@ public class Tank {
     return c;
   }
   float getRotation() {
-    return abs(degrees(r));
+    //return r;
+    return round(abs(degrees(r)));
   }
   void display() {
     noStroke();
@@ -90,21 +91,23 @@ public class Tank {
       text("TURN", x,y-50);
     }
     fill(c);//clears canvas
+    
     pushMatrix();
     translate(x-5, y-26);
     if (current == this) {
       rotate(r);
     }
-    rect(0, 0, 36, 10);
+    rect(0, 0, 36, 10);//gun
     fill(0, 0, 0);
     circle(36, 3, 5);//point of bullet
-    ammoX = 35 + screenX(0, 0);
-    ammoY = 3 + screenY(0, 0);
     popMatrix();
+      
+    ammoX = x + (36*cos(getRotation()));
+    ammoY = y - 24- (36*sin(getRotation()));
 
     fill(c);
     rect(x-20, y-25, 40, 25); //creates the tank
-    
+
     //vertexes for tank
     rightX = x + 20;
     rightY = y -20;
@@ -118,7 +121,11 @@ public class Tank {
     fill(c);
     arc(x, y-25, 26, 26, PI, PI+PI); 
     fill(0, 0, 0);
-    //circle(x, y, 5); //the point the tank is referenced
+    for(int i = 0;i<=1;i++){
+      fill(i*2,0,0);
+      circle(x + abs(36*cos(i)),y - 24- abs(36*sin(i)),5);
+    }
+    circle(x, y, 5); //the point the tank is referenced
 
     if (Ammos.isEmpty()!=true) {//if there's stuff in ammo
       for (Ammo o : Ammos) {
@@ -134,7 +141,7 @@ public class Tank {
         }
         //println("displaying");
         //println(Tanks.get(1).getX() + " " + Tanks.get(1).getY());
-        //println(dist(o.getX(), o.getY(), Tanks.get(1).getX(), Tanks.get(1).getY()));
+        //println(dist(o.getX(), o.getY(), Tanks4.get(1).getX(), Tanks.get(1).getY()));
 
         o.display();
       }
@@ -147,6 +154,7 @@ public class Tank {
   }
 
   void shoot() {
+    println((36*cos(getRotation())) + " " + (36*sin(getRotation())));
     Ammo ammo = new Ammo(ammoX, ammoY, r);
     Ammos.add(ammo);
   }
