@@ -56,21 +56,20 @@ public class Map {
     }
     return false;
   }
-  boolean touchX(Tank tank) {
+  int touchX(Tank tank) { // 0 is no 1 is left 2 is right
     for (int i = 0; i<map.length; i++) {
       for (int j = 0; j<map.length; j++) {
         //if grass and (right vertex touches  or left vertex touches)
         if (map[i][j] == true){
-          if(tank.getRightX() == i*20 && tank.getRightY() == j*20){
-            return true;
-          }
-          if(tank.getLeftX() == i*20 && tank.getLeftY() == j *20){
-            return true;
+          if(dist(tank.getRightX(), tank.getRightY(), i*20, j*20) <=0){
+            return 2;
+          }else if(dist(tank.getLeftX(), tank.getLeftY(), i*20, j*20) <=0){
+            return 1;
           }
         }
       }
     }
-    return false;
+    return 0;
   }
 
   //remove methods

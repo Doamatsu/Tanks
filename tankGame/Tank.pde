@@ -36,7 +36,20 @@ public class Tank {
   void tankFall(){
     y+=5;
   }
+  //set Methods
+  void setRight(boolean input){
+    touchRight = input;
+  }
+  void setLeft(boolean input){
+    touchLeft = input;
+  }
   //get Methods
+  boolean touchRight(){
+    return touchRight;
+  }
+  boolean touchLeft(){
+    return touchLeft;
+  }
   float getRightX(){
     return rightX;
   }
@@ -95,9 +108,9 @@ public class Tank {
     rightY = y -20;
     leftX = x -20;
     leftY = y -20;
-    fill(rightTouch);
+    fill(#000000);
     circle(rightX,rightY,5);
-    fill(leftTouch);
+    fill(#000000);
     circle(leftX,leftY,5);
     //CREATE VARIABLES FOR EDGES FOR DETECTION
     fill(c);

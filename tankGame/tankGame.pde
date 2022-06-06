@@ -50,14 +50,20 @@ void draw() {
     for (Tank o : Tanks) {
       playerBox(width/8 + incrementBox * 275, 10, o.getName(), o.getHP(), o.getRotation(), o.getColor());
       incrementBox++
-      ;
-      if(!map.touchY(o)){//fall if not touching floor
+        ;
+      if (!map.touchY(o)) {//fall if not touching floor
         o.tankFall();
       }
-      if(map.touchX(o)){
-       //write things!!!!
+      //if touch left or right stop that
+      if(map.touchX(o) == 1){
+        o.setLeft(true);
+      }else if(map.touchX(o) == 2){
+        o.setRight(true);
+      }else{
+        o.setRight(false);
+        o.setLeft(false);
       }
-        
+
       if (o.getHP() <=0) {
         tankRemove = true;
         removedOne = i;
@@ -84,16 +90,21 @@ void playerBox(float x, float y, String name_, float HP, float angle, color c) {
 void keyPressed() {
   //println(r);
   //if a tank isn't shooting
-  if(key == 'j'){
+  if (key == 'j') {
     debug = !debug;
   }
   if (shooting == false) {
+    if(!current.touchLeft()){
       if (key == 'a') {
       current.move("left");
     }
-    if (key == 'd') {
+    }
+    if(!current.touchRight(){
+      if (key == 'd') {
       current.move("right");
     }
+    }
+    
     if (key == 'w') {
       current.r -= .05;
       if (current.r<-3.339998) {
