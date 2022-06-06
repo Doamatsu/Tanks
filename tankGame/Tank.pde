@@ -133,7 +133,9 @@ public class Tank {
               a.damage(o.getDamage());
               removeAmmo = true; //remove the ammo after to not get concurrent error
               //println("CLOSE");
+              shooting = false;
             }else if(o.ammoTouch()){
+              shooting = false;
             removeAmmo = true;
           }
         }

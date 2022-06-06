@@ -35,18 +35,19 @@ void draw() {
       Tanks.remove(removedOne);
     }
     current.display();
-    if (shooting) {
-      countdown++;
-    }
-    if (countdown == 20) {
-      if (current == Tanks.get(0)) {
-        current = Tanks.get(1);
-      } else {
-        current = Tanks.get(0);
-      }
-      shooting = false;
-      countdown =0;
-    }
+    
+    //if (shooting) { //shooting turn countdown
+    //  countdown++;
+    //}
+    //if (countdown == 20) {
+    //  if (current == Tanks.get(0)) {
+    //    current = Tanks.get(1);
+    //  } else {
+    //    current = Tanks.get(0);
+    //  }
+    //  shooting = false;
+    //  countdown =0;
+    //}
     for (Tank o : Tanks) {
       playerBox(width/8 + incrementBox * 275, 10, o.getName(), o.getHP(), o.getRotation(), o.getColor());
       incrementBox++

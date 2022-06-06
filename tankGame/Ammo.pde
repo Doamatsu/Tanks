@@ -7,9 +7,9 @@ public class Ammo {
     x = x_;
     y = y_;
     r = abs(degrees(radius));
-    rx = 10;
+    rx = sin(r) * 2;
     damage = 10;
-    ry = (tan(radius))*10;
+    ry = cos(r);
     if (r>90) {
       //println("true");
         ry *= -1;

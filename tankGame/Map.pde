@@ -34,9 +34,14 @@ public class Map {
     for (int i = 0; i<map.length; i++) {
       for (int j = 0; j<map.length; j++) {
         //print(map[i][j]);
-        if (map[i][j] == true && dist(ammoX, ammoY, i*20, j*20) <=10) {
+        if (map[i][j] == true && dist(ammoX, ammoY, i*20, j*20) <=10) {//if it touches block
           //println(true);
           map[i][j] = false;
+          return true;
+          
+        }
+        else if(ammoX>width || ammoX<0 || ammoY > height || ammoY < 0){
+          shooting = false;
           return true;
           
         }
