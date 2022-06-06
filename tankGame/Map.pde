@@ -63,7 +63,7 @@ public class Map {
         if (map[i][j] == true){
           if(dist(tank.getRightX(), tank.getRightY(), i*20, j*20) <=0){
             return 2;
-          }else if(dist(tank.getLeftX(), tank.getLeftY(), i*20, j*20) <=0){
+          }else if(dist(tank.getLeftX(), tank.getLeftY(), i*20+20, j*20) <=0){
             return 1;
           }
         }

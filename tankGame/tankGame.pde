@@ -99,7 +99,7 @@ void keyPressed() {
       current.move("left");
     }
     }
-    if(!current.touchRight(){
+    if(!current.touchRight()){
       if (key == 'd') {
       current.move("right");
     }

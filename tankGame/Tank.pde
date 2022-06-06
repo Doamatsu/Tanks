@@ -82,6 +82,8 @@ public class Tank {
   }
   void display() {
     noStroke();
+    text("Touch Right: " + touchRight(),x,y-100);
+    text("Touch Left: " + touchLeft(),x,y-120);
     text(x + " " + y,x,y-80);
     if(current == this){
       fill(0,0,0);
