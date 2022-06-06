@@ -22,7 +22,8 @@ public class Map {
         if (map[i][j] == true) {
 
           //println("i " + i + " j " + j);
-          stroke(1);
+          //stroke(1);
+          noStroke();
           fill(#00FF00);
           square(i*20, j*20, 20);
         }

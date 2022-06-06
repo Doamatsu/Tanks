@@ -102,8 +102,6 @@ public class Tank {
     circle(36, 3, 5);//point of bullet
     popMatrix();
       
-    ammoX = x + (36*cos(getRotation()));
-    ammoY = y - 24- (36*sin(getRotation()));
 
     fill(c);
     rect(x-20, y-25, 40, 25); //creates the tank
@@ -155,7 +153,7 @@ public class Tank {
 
   void shoot() {
     println((36*cos(getRotation())) + " " + (36*sin(getRotation())));
-    Ammo ammo = new Ammo(ammoX, ammoY, r);
+    Ammo ammo = new Ammo(x,y-30,r);
     Ammos.add(ammo);
   }
   void move(String direction) {
