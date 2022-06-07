@@ -6,6 +6,9 @@ int countdown;
 boolean tankRemove = false;
 Map map;
 boolean debug = true;
+static Tank next(current){
+  
+}
 void setup() {
   size(800, 800);
   countdown = 0;
