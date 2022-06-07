@@ -99,7 +99,7 @@ public class Tank {
     }
     rect(0, 0, 36, 10);//gun
     fill(0, 0, 0);
-    circle(36, 3, 5);//point of bullet
+    //circle(36, 3, 5);//point of bullet
     popMatrix();
       
 
@@ -119,10 +119,6 @@ public class Tank {
     fill(c);
     arc(x, y-25, 26, 26, PI, PI+PI); 
     fill(0, 0, 0);
-    for(int i = 0;i<=1;i++){
-      fill(i*2,0,0);
-      circle(x + abs(36*cos(i)),y - 24- abs(36*sin(i)),5);
-    }
     circle(x, y, 5); //the point the tank is referenced
 
     if (Ammos.isEmpty()!=true) {//if there's stuff in ammo
@@ -131,6 +127,7 @@ public class Tank {
           if (a != this) {
             if (dist(o.getX(), o.getY(), a.getX(), a.getY()) <= 20 ) {//if its close
               a.damage(o.getDamage());
+              
               removeAmmo = true; //remove the ammo after to not get concurrent error
               //println("CLOSE");
               shooting = false;

@@ -3,19 +3,15 @@ public class Ammo {
   private float x, y;
   private float ry,rx;
   private float r;
+  private float gravity = 1;
   public Ammo(float x_, float y_,float radius) {
     x = x_;
     y = y_;
-    r = abs(degrees(radius));
-    rx = sin(r) * 2;
+    r = radius;
+    rx = cos(r) * 2;
     damage = 10;
-    ry = cos(r);
-    if (r>90) {
-      //println("true");
-        ry *= -1;
-        rx*= -1;
-      }
-    //println("ry: " + ry);
+    ry = sin(r)*2;
+    
   }
 
   float getDamage() {
@@ -35,6 +31,7 @@ public class Ammo {
       //}
       x+=rx;
     }
+    y+= gravity;
   }
   //get methods
   float getX(){
