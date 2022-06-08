@@ -130,9 +130,11 @@ public class Tank {
               removeAmmo = true; //remove the ammo after to not get concurrent error
               //println("CLOSE");
               shooting = false;
+              tankGame.next();
             }else if(o.ammoTouch()){
               shooting = false;
             removeAmmo = true;
+            tankGame.next();
           }
         }
         //println("displaying");
@@ -150,7 +152,7 @@ public class Tank {
   }
 
   void shoot() {
-    println((36*cos(getRotation())) + " " + (36*sin(getRotation())));
+    println(abs(degrees(r)));
     Ammo ammo = new Ammo(x,y-30,r);
     Ammos.add(ammo);
   }

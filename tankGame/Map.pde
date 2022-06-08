@@ -34,8 +34,9 @@ public class Map {
     for (int i = 0; i<map.length; i++) {
       for (int j = 0; j<map.length; j++) {
         //print(map[i][j]);
-        if (map[i][j] == true && dist(ammoX, ammoY, i*20, j*20) <=10) {//if it touches block
-          //println(true);
+        println(ammoX + " " + ammoY);
+        if (map[i][j] == true && (dist(ammoX, 0, i*20 + 10,0) <= 10 && dist(0,ammoY,0,j*20) <=5)) {//if it touches block
+          
           map[i][j] = false;
           return true;
           

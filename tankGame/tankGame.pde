@@ -1,13 +1,17 @@
 import java.util.*;
 static Tank current;
-ArrayList<Tank>Tanks;
+static ArrayList<Tank>Tanks;
 boolean shooting = false;
 int countdown;
 boolean tankRemove = false;
 Map map;
 boolean debug = true;
-static Tank next(current){
-  
+static void next(){
+  if(Tanks.indexOf(current) == Tanks.size()-1){
+    current = Tanks.get(0);
+  }else{
+    current = Tanks.get(Tanks.indexOf(current) + 1);
+  }
 }
 void setup() {
   size(800, 800);

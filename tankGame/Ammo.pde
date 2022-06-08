@@ -3,7 +3,7 @@ public class Ammo {
   private float x, y;
   private float ry,rx;
   private float r;
-  private float gravity = 1;
+  private float gravity = .01;
   public Ammo(float x_, float y_,float radius) {
     x = x_;
     y = y_;
@@ -31,7 +31,7 @@ public class Ammo {
       //}
       x+=rx;
     }
-    y+= gravity;
+    ry+= gravity;
   }
   //get methods
   float getX(){
