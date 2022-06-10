@@ -27,6 +27,7 @@ void setup() {
   Tanks.add(Tester2);
   current = Tester;
 }
+
 void draw() {
   if(mainMenu){
     background(255);
