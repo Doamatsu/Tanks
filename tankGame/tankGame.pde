@@ -9,6 +9,7 @@ boolean debug = true;
 boolean mainMenu = true;
 boolean playerMenu = false;
 boolean instructions = false;
+Button pMenuButton;
 static void next(){
   if(Tanks.indexOf(current) == Tanks.size()-1){
     current = Tanks.get(0);
@@ -21,11 +22,14 @@ void setup() {
   countdown = 0;
   Tanks = new ArrayList<Tank>();
   map = new Map();
+  
   Tank Tester = new Tank(100, 100, #FF0000, "P1", 50);
   Tank Tester2 = new Tank(700, 100, #0000FF, "P2", 50);
   Tanks.add(Tester);
   Tanks.add(Tester2);
   current = Tester;
+  
+  pMenuButton = new Button("PLAYER MENU", width/2,height/3);
 }
 
 void draw() {
@@ -35,7 +39,7 @@ void draw() {
     fill(#00503b);
     textAlign(CENTER);
     text("TANK WARS",width/2,height/5);
-    
+    pMenuButton.display();
   }else if (Tanks.size() == 1) {
     background(255);
     fill(0, 0, 0);
