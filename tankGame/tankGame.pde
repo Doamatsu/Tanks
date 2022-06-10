@@ -6,6 +6,9 @@ int countdown;
 boolean tankRemove = false;
 Map map;
 boolean debug = true;
+boolean mainMenu = true;
+boolean playerMenu = false;
+boolean instructions = false;
 static void next(){
   if(Tanks.indexOf(current) == Tanks.size()-1){
     current = Tanks.get(0);
@@ -25,7 +28,14 @@ void setup() {
   current = Tester;
 }
 void draw() {
-  if (Tanks.size() == 1) {
+  if(mainMenu){
+    background(255);
+    textSize(128);
+    fill(#00503b);
+    textAlign(CENTER);
+    text("TANK WARS",width/2,height/5);
+    
+  }else if (Tanks.size() == 1) {
     background(255);
     fill(0, 0, 0);
     textSize(100);
@@ -42,19 +52,6 @@ void draw() {
       Tanks.remove(removedOne);
     }
     current.display();
-    
-    //if (shooting) { //shooting turn countdown
-    //  countdown++;
-    //}
-    //if (countdown == 20) {
-    //  if (current == Tanks.get(0)) {
-    //    current = Tanks.get(1);
-    //  } else {
-    //    current = Tanks.get(0);
-    //  }
-    //  shooting = false;
-    //  countdown =0;
-    //}
     for (Tank o : Tanks) {
       playerBox(width/8 + incrementBox * 275, 10, o.getName(), o.getHP(), o.getRotation(), o.getColor());
       incrementBox++
