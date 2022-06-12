@@ -7,19 +7,19 @@ public class Button {
     y = y_;
   }
   void display() {
-    fill(overButton());
+    if(insideButton()){
+      fill(#296F65); 
+    }else{
+      fill(#42A799);
+    }
     rect(width/2 - length/2, y, length, 76);
     textAlign(CENTER);
     fill(#000000);
     textSize(25);
     text(words, width/2, y+40);
   }
-  color overButton() {
-    if (mouseX >= width/2-length/2&& mouseX <= width/2 &&
-      mouseY >= y && mouseY <= y+76) {
-      return #296F65;
-    } else {
-      return #42A799;
-    }
+  boolean insideButton() {
+    return(mouseX >= width/2-length/2&& mouseX <= width/2 + length &&
+      mouseY >= y && mouseY <= y+76);
   }
 }

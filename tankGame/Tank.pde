@@ -131,10 +131,12 @@ public class Tank {
               //println("CLOSE");
               shooting = false;
               tankGame.next();
+              //println("touch tank");
             }else if(o.ammoTouch()){
               shooting = false;
             removeAmmo = true;
             tankGame.next();
+            //println("touch map");
           }
         }
         //println("displaying");
@@ -152,7 +154,7 @@ public class Tank {
   }
 
   void shoot() {
-    println(abs(degrees(r)));
+    //println(abs(degrees(r)));
     Ammo ammo = new Ammo(x,y-30,r);
     Ammos.add(ammo);
   }

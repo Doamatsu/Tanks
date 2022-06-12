@@ -7,14 +7,19 @@ boolean tankRemove = false;
 Map map;
 boolean debug = true;
 boolean mainMenu = true;
-boolean playerMenu = false;
+boolean pMenu = false;
 boolean instructions = false;
 Button pMenuButton;
 Button instructionsButton;
-static void next(){
-  if(Tanks.indexOf(current) == Tanks.size()-1){
+Button twoPlayer;
+Button threePlayer;
+Tank Tester,Tester2,Tester3;
+static void next() {
+  int index = Tanks.indexOf(current);
+  //println(index);
+  if (Tanks.indexOf(current) == Tanks.size()-1) {
     current = Tanks.get(0);
-  }else{
+  } else {
     current = Tanks.get(Tanks.indexOf(current) + 1);
   }
 }
@@ -23,27 +28,29 @@ void setup() {
   countdown = 0;
   Tanks = new ArrayList<Tank>();
   map = new Map();
+  pMenuButton = new Button("PLAYER MENU", height/3);
+  instructionsButton = new Button("INSTRUCTIONS", height/3 + 100);
+  twoPlayer = new Button("2 PLAYERS",height/3);
+  threePlayer = new Button("3 PLAYERS", height/3 + 100);
   
-  Tank Tester = new Tank(100, 100, #FF0000, "P1", 50);
-  Tank Tester2 = new Tank(700, 100, #0000FF, "P2", 50);
-  Tanks.add(Tester);
-  Tanks.add(Tester2);
-  current = Tester;
-  
-  pMenuButton = new Button("PLAYER MENU",height/3);
-  instructionsButton = new Button("INSTRUCTIONS",height/3 + 100);
 }
 
 void draw() {
-  if(mainMenu){//MAIN MENU
+  if (mainMenu) {//MAIN MENU
     background(255);
     textSize(128);
     fill(#00503b);
     textAlign(CENTER);
-    text("TANK WARS",width/2,height/5);
-    pMenuButton.display();
-    instructionsButton.display();
-  }else if (Tanks.size() == 1) {
+    text("TANK WARS", width/2, height/5); //TITLE TEXT
+    pMenuButton.display(); //PLAYER MENU BUTTON
+    instructionsButton.display(); //INSTRUCTIONS BUTTON
+  } else if (pMenu) {//PLAYER MENU
+    background(255);
+    textSize(40);
+    text("Select the Number of Players", width/2, height/5); //TITLE TEXT
+    twoPlayer.display();
+    threePlayer.display();
+  } else if (Tanks.size() == 1) {
     background(255);
     fill(0, 0, 0);
     textSize(100);
@@ -61,18 +68,18 @@ void draw() {
     }
     current.display();
     for (Tank o : Tanks) {
-      playerBox(width/8 + incrementBox * 275, 10, o.getName(), o.getHP(), o.getRotation(), o.getColor());
+      playerBox(width/8 + incrementBox * 250, 10, o.getName(), o.getHP(), o.getRotation(), o.getColor());
       incrementBox++
         ;
       if (!map.touchY(o)) {//fall if not touching floor
         o.tankFall();
       }
       //if touch left or right stop that
-      if(map.touchX(o) == 1){
+      if (map.touchX(o) == 1) {
         o.setLeft(true);
-      }else if(map.touchX(o) == 2){
+      } else if (map.touchX(o) == 2) {
         o.setRight(true);
-      }else{
+      } else {
         o.setRight(false);
         o.setLeft(false);
       }
@@ -93,31 +100,61 @@ void draw() {
 
 void playerBox(float x, float y, String name_, float HP, float angle, color c) {
   fill(c);
-  rect(x, y, 250, 92);
+  rect(x, y, 150, 92);
   fill(0);
+  textAlign(LEFT);
   textSize(15);
   text("Player 1: " + name_, x+10, y+20);
   text("HP: " + HP, x+10, y+40);
   text("Angle: " + angle, x+10, y+60);
 }
+
+void mouseClicked() {
+  if (mainMenu) {
+    if (pMenuButton.insideButton()) {
+      mainMenu = false;
+      pMenu = true;
+    }
+  }else if(pMenu){
+    if(twoPlayer.insideButton()){
+      Tank Tester = new Tank(100, 100, #FF0000, "P1", 50);
+  Tank Tester2 = new Tank(700, 100, #0000FF, "P2", 50);
+      Tanks.add(Tester);
+      Tanks.add(Tester2);
+      current = Tester;
+      pMenu = false;
+    }
+    if(threePlayer.insideButton()){
+      Tank Tester = new Tank(100, 100, #FF0000, "P1", 50);
+  Tank Tester2 = new Tank(700, 100, #0000FF, "P2", 50);
+      Tank Tester3 = new Tank(350,100, #DECB24, "P3", 50);
+      Tanks.add(Tester);
+      Tanks.add(Tester2);
+      Tanks.add(Tester3);
+      current = Tester;
+      pMenu = false;
+    }
+  }
+}
 void keyPressed() {
   //println(r);
   //if a tank isn't shooting
-  if (key == 'j') {
+  if(!mainMenu && !pMenu && !instructions){
+    if (key == 'j') {
     debug = !debug;
   }
   if (shooting == false) {
-    if(!current.touchLeft()){
+    if (!current.touchLeft()) {
       if (key == 'a') {
-      current.move("left");
+        current.move("left");
+      }
     }
-    }
-    if(!current.touchRight()){
+    if (!current.touchRight()) {
       if (key == 'd') {
-      current.move("right");
+        current.move("right");
+      }
     }
-    }
-    
+
     if (key == 'w') {
       current.r -= .05;
       if (current.r<-3.1399982) {
@@ -142,4 +179,6 @@ void keyPressed() {
       current.shoot();
     }
   }
+  }
+  
 }
