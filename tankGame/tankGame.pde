@@ -10,6 +10,7 @@ boolean mainMenu = true;
 boolean playerMenu = false;
 boolean instructions = false;
 Button pMenuButton;
+Button instructionsButton;
 static void next(){
   if(Tanks.indexOf(current) == Tanks.size()-1){
     current = Tanks.get(0);
@@ -29,17 +30,19 @@ void setup() {
   Tanks.add(Tester2);
   current = Tester;
   
-  pMenuButton = new Button("PLAYER MENU", width/2,height/3);
+  pMenuButton = new Button("PLAYER MENU",height/3);
+  instructionsButton = new Button("INSTRUCTIONS",height/3 + 100);
 }
 
 void draw() {
-  if(mainMenu){
+  if(mainMenu){//MAIN MENU
     background(255);
     textSize(128);
     fill(#00503b);
     textAlign(CENTER);
     text("TANK WARS",width/2,height/5);
     pMenuButton.display();
+    instructionsButton.display();
   }else if (Tanks.size() == 1) {
     background(255);
     fill(0, 0, 0);
