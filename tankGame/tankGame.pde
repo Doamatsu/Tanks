@@ -104,7 +104,7 @@ void playerBox(float x, float y, String name_, float HP, float angle, color c) {
   fill(0);
   textAlign(LEFT);
   textSize(15);
-  text("Player 1: " + name_, x+10, y+20);
+  text("Player: " + name_, x+10, y+20);
   text("HP: " + HP, x+10, y+40);
   text("Angle: " + angle, x+10, y+60);
 }

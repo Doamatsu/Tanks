@@ -35,7 +35,14 @@ public class Map {
       for (int j = 0; j<map.length; j++) {
         //print(map[i][j]);
         //println(ammoX + " " + ammoY);
-        if (map[i][j] == true && (dist(ammoX, 0, i*20 + 10,0) <= 10 && dist(0,ammoY,0,j*20) <=5)) {//if it touches block
+        float mapX = i*20;
+        float mapY = j*20;
+        boolean horizontal = ammoX>=mapX && ammoX <= mapX+20;
+        boolean vertical = ammoY>= mapY && ammoY <= mapY+20;
+        if (map[i][j] == true && (horizontal && ammoY>=mapY-2 && ammoY<=mapY+2 ||
+            horizontal && ammoY>= mapY +20-2 && ammoY <= mapY+20 +2 || 
+            vertical && ammoX >= mapX-2 && ammoX <= mapX+2 || 
+            vertical && ammoX >= mapX+20-2 && ammoX <= mapX+20+2)) {//if it touches block
           
           map[i][j] = false;
           return true;
