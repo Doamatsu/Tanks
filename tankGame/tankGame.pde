@@ -5,7 +5,7 @@ boolean shooting = false;
 int countdown;
 boolean tankRemove = false;
 Map map;
-boolean debug = true;
+boolean debug = false;
 boolean mainMenu = true;
 boolean pMenu = false;
 boolean instructions = false;
@@ -13,6 +13,8 @@ Button pMenuButton;
 Button instructionsButton;
 Button twoPlayer;
 Button threePlayer;
+Button reset;
+Button returnButton;
 Tank Tester,Tester2,Tester3;
 boolean wait;
 
@@ -41,7 +43,8 @@ void setup() {
   instructionsButton = new Button("INSTRUCTIONS", height/3 + 100);
   twoPlayer = new Button("2 PLAYERS",height/3);
   threePlayer = new Button("3 PLAYERS", height/3 + 100);
-  
+  reset = new Button("RESET", height/2 - 100);
+  returnButton = new Button("RETURN",650);
 }
 
 void draw() {
@@ -53,18 +56,37 @@ void draw() {
     text("TANK WARS", width/2, height/5); //TITLE TEXT
     pMenuButton.display(); //PLAYER MENU BUTTON
     instructionsButton.display(); //INSTRUCTIONS BUTTON
-  } else if (pMenu) {//PLAYER MENU
+  }else if(instructions){
+    background(255);
+    returnButton.display();
+    textSize(25);
+    textAlign(LEFT);
+    
+    text("Try to shoot the other players to death.",width/7,100);
+    text("Shooting the floor will break the green blocks.",width/7,130);
+    text("Falling out of the world will result in your death.",width/7,160);
+    text("Press a or d to move, w or s to adjust gun angle", width/7,190);
+    text("SPACE BAR TO SHOOT", width/7,220);
+    text("All tanks will be able to move for a lil bit every turn.", width/7,250);
+    text("Press j for debug button",width/7,280);
+    text("Press k for during debug for kill firstest tank button",width/7,310);
+  }else if (pMenu) {//PLAYER MENU
     background(255);
     textSize(40);
     text("Select the Number of Players", width/2, height/5); //TITLE TEXT
     twoPlayer.display();
     threePlayer.display();
+    returnButton.display();
   } else if (Tanks.size() == 1) {
     background(255);
     fill(0, 0, 0);
+    textAlign(CENTER);
     textSize(100);
-    text(Tanks.get(0).getName() + " WINS!!!", width/3, height/2);
-  } else {
+    text(Tanks.get(0).getName() + " WINS!!!", width/2, height/4);
+    stroke(1);
+    reset.display();
+    
+  }else{
     background(255);
     wait = countdown <120;
     if(countdown > 100 && countdown < 150){
@@ -134,6 +156,15 @@ void mouseClicked() {
       mainMenu = false;
       pMenu = true;
     }
+    if(instructionsButton.insideButton()){
+      mainMenu = false;
+      instructions = true;
+    }
+  }else if(instructions){
+    if(returnButton.insideButton()){
+      instructions = false;
+      mainMenu = true;
+    }
   }else if(pMenu){
     if(twoPlayer.insideButton()){
       Tank Tester = new Tank(100, 100, #FF0000, "P1", 50);
@@ -153,6 +184,15 @@ void mouseClicked() {
       current = Tester;
       pMenu = false;
     }
+    if(returnButton.insideButton()){
+      pMenu = false;
+      mainMenu = true;
+    }
+  }else{
+    if(reset.insideButton()){
+      Tanks.clear();
+      mainMenu = true;
+    }
   }
 }
 void keyPressed() {
@@ -161,9 +201,14 @@ void keyPressed() {
   if(!mainMenu && !pMenu && !instructions){
     if (key == 'j') {
     debug = !debug;
+    
   }
+  if(debug && key == 'k'){
+    Tanks.remove(0);
+  }
+    
   if (shooting == false && !wait) {
-    if(key == 't'){
+    if(debug && key == 't'){
       next();
     }
       if (keyCode == ' ') {
