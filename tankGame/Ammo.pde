@@ -1,27 +1,26 @@
+
 public class Ammo {
   private float damage;
   private float x, y;
   private float ry,rx;
   private float r;
+  private float gravity = .01;
   public Ammo(float x_, float y_,float radius) {
     x = x_;
     y = y_;
-    r = abs(degrees(radius));
-    rx = 10;
+    r = radius;
+    rx = cos(r) * 2;
     damage = 10;
-    ry = (tan(radius))*10;
-    if (r>90) {
-      //println("true");
-        ry *= -1;
-        rx*= -1;
-      }
-    //println("ry: " + ry);
+    ry = sin(r)*2;
+    
   }
 
   float getDamage() {
     return damage;
   }
-
+  boolean ammoTouch(){
+    return map.ammoTouch(x,y);
+  }
   void display() {
 
     if (shooting) {
@@ -33,6 +32,7 @@ public class Ammo {
       //}
       x+=rx;
     }
+    ry+= gravity;
   }
   //get methods
   float getX(){
