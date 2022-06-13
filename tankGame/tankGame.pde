@@ -14,18 +14,25 @@ Button instructionsButton;
 Button twoPlayer;
 Button threePlayer;
 Tank Tester,Tester2,Tester3;
+boolean wait;
+
 static void next() {
+  //println(Tanks.toString());
   int index = Tanks.indexOf(current);
-  //println(index);
-  if (Tanks.indexOf(current) == Tanks.size()-1) {
+  //println(index + " "+ Tanks.size());
+  if (index == Tanks.size()-1){
     current = Tanks.get(0);
   } else {
-    current = Tanks.get(Tanks.indexOf(current) + 1);
+    index++;
+    current = Tanks.get(index);
   }
+  //println(Tanks.indexOf(current));
 }
+
 void setup() {
   size(800, 800);
   countdown = 0;
+  wait = true;
   Tanks = new ArrayList<Tank>();
   map = new Map();
   pMenuButton = new Button("PLAYER MENU", height/3);
@@ -57,6 +64,14 @@ void draw() {
     text(Tanks.get(0).getName() + " WINS!!!", width/3, height/2);
   } else {
     background(255);
+    wait = countdown <120;
+    if(countdown > 100 && countdown < 150){
+      textAlign(CENTER);
+      fill(#000000);
+      textSize(100);
+      text("START",width/2,height/3);
+    }
+    countdown++;
     map.display();
     float incrementBox = 0;
     int i =0;
@@ -104,6 +119,7 @@ void playerBox(float x, float y, String name_, float HP, float angle, color c) {
   fill(0);
   textAlign(LEFT);
   textSize(15);
+  fill(#FFFFFF);
   text("Player: " + name_, x+10, y+20);
   text("HP: " + HP, x+10, y+40);
   text("Angle: " + angle, x+10, y+60);
@@ -143,7 +159,16 @@ void keyPressed() {
     if (key == 'j') {
     debug = !debug;
   }
-  if (shooting == false) {
+  if (shooting == false && !wait) {
+    if(key == 't'){
+      next();
+    }
+      if (keyCode == ' ') {
+    if (!shooting) {
+      shooting = true;
+      current.shoot();
+    }
+  }
     if (!current.touchLeft()) {
       if (key == 'a') {
         current.move("left");
@@ -173,12 +198,7 @@ void keyPressed() {
     }
   }
 
-  if (keyCode == ' ') {
-    if (!shooting) {
-      shooting = true;
-      current.shoot();
-    }
-  }
+
   }
   
 }

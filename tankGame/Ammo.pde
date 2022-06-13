@@ -1,3 +1,4 @@
+
 public class Ammo {
   private float damage;
   private float x, y;

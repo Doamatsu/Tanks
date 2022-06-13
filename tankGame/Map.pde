@@ -40,18 +40,14 @@ public class Map {
         boolean horizontal = ammoX>=mapX && ammoX <= mapX+20;
         boolean vertical = ammoY>= mapY && ammoY <= mapY+20;
         if (map[i][j] == true && (horizontal && ammoY>=mapY-2 && ammoY<=mapY+2 ||
-            horizontal && ammoY>= mapY +20-2 && ammoY <= mapY+20 +2 || 
-            vertical && ammoX >= mapX-2 && ammoX <= mapX+2 || 
-            vertical && ammoX >= mapX+20-2 && ammoX <= mapX+20+2)) {//if it touches block
-          
+          horizontal && ammoY>= mapY +20-2 && ammoY <= mapY+20 +2 || 
+          vertical && ammoX >= mapX-2 && ammoX <= mapX+20+2 || 
+          vertical && ammoX >= mapX+20-2 && ammoY <= mapX+20+2)) {//if it touches side of block
+
           map[i][j] = false;
           return true;
-          
-        }
-        else if(ammoX>width || ammoX<0 || ammoY > height || ammoY < 0){
-          shooting = false;
+        }else if (ammoX>width || ammoX<0 || ammoY > height || ammoY < 0) {
           return true;
-          
         }
       }
     }
@@ -62,7 +58,7 @@ public class Map {
       for (int j = 0; j<map.length; j++) {
         //print(map[i][j]);
         if (map[i][j] == true && dist(0, tank.getY(), 0, j*20) <=0 && dist(tank.getX(), 0, i*20, 0) <=10 ) {
-          
+
           //println(i + " " + j);
           return true;
         }
@@ -74,10 +70,10 @@ public class Map {
     for (int i = 0; i<map.length; i++) {
       for (int j = 0; j<map.length; j++) {
         //if grass and (right vertex touches  or left vertex touches)
-        if (map[i][j] == true){
-          if(dist(tank.getRightX(), tank.getRightY(), i*20, j*20) <=0){
+        if (map[i][j] == true) {
+          if (dist(tank.getRightX(), tank.getRightY(), i*20, j*20) <=0) {
             return 2;
-          }else if(dist(tank.getLeftX(), tank.getLeftY(), i*20+20, j*20) <=0){
+          } else if (dist(tank.getLeftX(), tank.getLeftY(), i*20+20, j*20) <=0) {
             return 1;
           }
         }
