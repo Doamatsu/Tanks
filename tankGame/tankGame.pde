@@ -70,8 +70,8 @@ void draw() {
     if(countdown > 100 && countdown < 150){
       textAlign(CENTER);
       fill(#000000);
-      textSize(100);
-      text("START",width/2,height/3);
+      textSize(75);
+      text("START",width/2,height/4-20);
     }
     countdown++;
     map.display();

@@ -44,7 +44,7 @@ public class Tank {
     touchLeft = input;
   }
   //get Methods
-  float getStamina(){
+  float getStamina() {
     return stamina;
   }
   boolean touchRight() {
@@ -109,7 +109,6 @@ public class Tank {
     //circle(36, 3, 5);//point of bullet
     popMatrix();
 
-
     fill(c);
     rect(x-20, y-25, 40, 25); //creates the tank
 
@@ -119,80 +118,92 @@ public class Tank {
     leftX = x -20;
     leftY = y -20;
     fill(#000000);
-    circle(rightX, rightY, 5);
+    //circle(rightX, rightY, 5);
     fill(#000000);
-    circle(leftX, leftY, 5);
+    //circle(leftX, leftY, 5);
     //CREATE VARIABLES FOR EDGES FOR DETECTION
     fill(c);
     arc(x, y-25, 26, 26, PI, PI+PI); 
     fill(0, 0, 0);
-    circle(x, y, 5); //the point the tank is referenced
+    //circle(x, y, 5); //the point the tank is referenced
+    if(y>height){
+      HP = 0;//if fall, die
+    }
+    if(x+15>=width){
+      touchRight=true;
+    }
+    if(x-15<=0){
+      touchLeft = true;
+    }
     for (Tank a : Tanks) {
-            if (a != this) {
-              tankCollision(a);
-            }
+      if (a != this) {
+        tankCollision(a);
+      }
     }
     if (Ammos.isEmpty()!=true) {//if there's stuff in ammo
 
-        for (Ammo o : Ammos) {
+      for (Ammo o : Ammos) {
+        if (o.ammoTouch()) {
+          removeAmmo = true;
+          tankGame.next();
+          //println("touch map");
+        } else {
           for (Tank a : Tanks) {
             if (a != this) {
               if (dist(o.getX(), o.getY(), a.getX(), a.getY()-10) <= 20 ) {//if its close
                 a.damage(o.getDamage());
                 removeAmmo = true; //remove the ammo after to not get concurrent error
                 tankGame.next();
-                println("touch tank");
-              } else if (o.ammoTouch()) {
-                removeAmmo = true;
-                tankGame.next();
-                println("touch map");
+                //println(a.getName());
+                //println("touch tank");
               }
             }
 
             o.display();
           }
         }
-        if (removeAmmo) {
-          shooting = false;
-          removeAmmo = false;
-          removeAmmo();
-        }
+        o.display();
       }
-    }
-    void tankCollision(Tank otherTank){// 0 is no 1 is left 2 is right
-      if(dist(otherTank.getLeftX(),otherTank.getLeftY(),getRightX(),getRightY()) <=0){
-      //otherTank.getRightX() == getRightX() && otherTank.getRightY() == getRightY()){
-        touchRight = true;
+      if (removeAmmo) {
+        shooting = false;
+        removeAmmo = false;
+        removeAmmo();
       }
-      else if(otherTank.getRightX() == getLeftX() && otherTank.getRightX() == getLeftX()){
-        touchLeft = true;
-      }
-    }
-    void shoot() {
-      //println(abs(degrees(r)));
-      Ammo ammo = new Ammo(x, y-30, r);
-      Ammos.add(ammo);
-    }
-    void move(String direction) {
-      if (direction.equals("right")) {
-        x+=2;
-      }
-      if (direction.equals("left")) {
-        x-=2;
-      }
-    }
-    //set methods
-    void resetStamina(){
-      stamina = 30;
-    }
-    //remove method
-    void decreaseStamina(){
-      stamina--;
-    }
-    void removeAmmo() {
-      Ammos.remove(0);
-    }
-    void damage(float damage) {
-      HP-=damage;
     }
   }
+  void tankCollision(Tank otherTank) {// 0 is no 1 is left 2 is right
+    if (dist(otherTank.getLeftX(), otherTank.getLeftY(), getRightX(), getRightY()) <=0) {
+      //otherTank.getRightX() == getRightX() && otherTank.getRightY() == getRightY()){
+      touchRight = true;
+    } else if (otherTank.getRightX() == getLeftX() && otherTank.getRightX() == getLeftX()) {
+      touchLeft = true;
+    }
+  }
+  void shoot() {
+    //println(abs(degrees(r)));
+    Ammo ammo = new Ammo(x, y-30, r);
+    Ammos.add(ammo);
+  }
+  void move(String direction) {
+    if (direction.equals("right")) {
+      x+=2;
+    }
+    if (direction.equals("left")) {
+      x-=2;
+    }
+  }
+  //set methods
+  void resetStamina() {
+    stamina = 30;
+  }
+  //remove method
+  void decreaseStamina() {
+    stamina--;
+  }
+  void removeAmmo() {
+    Ammos.remove(0);
+  }
+  void damage(float damage) {
+    HP-=damage;
+  }
+}

@@ -11,10 +11,19 @@ public class Map {
       }
     }
     for (int i = 0; i<map.length; i++) {
-      for (int j = 30; j<map.length; j++) {
+      for (int j = 10; j<map.length; j++) {
         map[i][j] = true;
       }
     }
+    map[0][10] = false;map[1][10] = false;map[2][10] = false;map[3][10] = false;
+    map[20][10] = false;map[19][10] = false;map[18][10] = false;map[17][10] = false;
+    map[39][10] = false;map[38][10] = false;map[37][10] = false;map[36][10] = false;
+    map[20][11] = false;map[19][11] = false;map[18][11] = false;
+    map[39][11] = false;map[38][11] = false;map[37][11] = false;
+    map[0][11] = false;map[1][11] = false;map[2][11] = false;
+    map[20][12] = false;map[19][12] = false;map[18][12] = false;
+    map[39][12] = false;map[38][12] = false;map[37][12] = false;
+    map[0][12] = false;map[1][12] = false;map[2][12] = false;
   }
   void display() {
     for (int i = 0; i<map.length; i++) {
@@ -42,11 +51,11 @@ public class Map {
         if (map[i][j] == true && (horizontal && ammoY>=mapY-2 && ammoY<=mapY+2 ||
           horizontal && ammoY>= mapY +20-2 && ammoY <= mapY+20 +2 || 
           vertical && ammoX >= mapX-2 && ammoX <= mapX+20+2 || 
-          vertical && ammoX >= mapX+20-2 && ammoY <= mapX+20+2)) {//if it touches side of block
+          vertical && ammoX >= mapX+20-2 && ammoX <= mapX+20+2)) {//if it touches side of block
 
           map[i][j] = false;
           return true;
-        }else if (ammoX>width || ammoX<0 || ammoY > height || ammoY < 0) {
+        }else if (ammoX>width || ammoX<0 || ammoY > height) {
           return true;
         }
       }
@@ -54,17 +63,25 @@ public class Map {
     return false;
   }
   boolean touchY(Tank tank) {//returns true if touching bottom of tank
+    boolean leftVertex = false;
+    boolean rightVertex =false;
     for (int i = 0; i<map.length; i++) {
       for (int j = 0; j<map.length; j++) {
         //print(map[i][j]);
-        if (map[i][j] == true && dist(0, tank.getY(), 0, j*20) <=0 && dist(tank.getX(), 0, i*20, 0) <=10 ) {
-
-          //println(i + " " + j);
-          return true;
+        if(map[i][j] == true && tank.getY() == j*20 && tank.getX()-20 >=i*20 && tank.getX()-20<=i*20+20){
+          leftVertex = true;
         }
+        if(map[i][j] == true && tank.getY() == j*20 && tank.getX()+20 >=i*20 && tank.getX()+20<=i*20+20){
+          rightVertex = true;
+        }
+        //if (map[i][j] == true && dist(0, tank.getY(), 0, j*20) <=0 && dist(tank.getX(), 0, i*20, 0) <=10 ) {
+
+        //  //println(i + " " + j);
+        //  return true;
+        //}
       }
     }
-    return false;
+    return leftVertex||rightVertex;
   }
   int touchX(Tank tank) { // 0 is no 1 is left 2 is right
     for (int i = 0; i<map.length; i++) {
