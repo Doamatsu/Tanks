@@ -88,6 +88,8 @@ public class Tank {
     noStroke();
     if (debug) {
       fill(#000000);
+      textAlign(LEFT);
+      textSize(15);
       text("Ammo: " + Ammos.size(), x, y-60);
       text("Touch Right: " + touchRight(), x, y-100);
       text("Touch Left: " + touchLeft(), x, y-120);
