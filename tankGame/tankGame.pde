@@ -22,9 +22,11 @@ static void next() {
   //println(index + " "+ Tanks.size());
   if (index == Tanks.size()-1){
     current = Tanks.get(0);
+    current.resetStamina();
   } else {
     index++;
     current = Tanks.get(index);
+    current.resetStamina();
   }
   //println(Tanks.indexOf(current));
 }
@@ -83,7 +85,7 @@ void draw() {
     }
     current.display();
     for (Tank o : Tanks) {
-      playerBox(width/8 + incrementBox * 250, 10, o.getName(), o.getHP(), o.getRotation(), o.getColor());
+      playerBox(width/8 + incrementBox * 250, 10, o.getName(), o.getHP(), o.getRotation(), o.getColor(),o.getStamina());
       incrementBox++
         ;
       if (!map.touchY(o)) {//fall if not touching floor
@@ -113,7 +115,7 @@ void draw() {
   //textbox
 }
 
-void playerBox(float x, float y, String name_, float HP, float angle, color c) {
+void playerBox(float x, float y, String name_, float HP, float angle, color c,float stamina) {
   fill(c);
   rect(x, y, 150, 92);
   fill(0);
@@ -123,6 +125,7 @@ void playerBox(float x, float y, String name_, float HP, float angle, color c) {
   text("Player: " + name_, x+10, y+20);
   text("HP: " + HP, x+10, y+40);
   text("Angle: " + angle, x+10, y+60);
+  text("Stamina: " + stamina, x+10,y+80);
 }
 
 void mouseClicked() {
@@ -169,14 +172,16 @@ void keyPressed() {
       current.shoot();
     }
   }
-    if (!current.touchLeft()) {
+    if (!current.touchLeft() && current.getStamina()>0) {
       if (key == 'a') {
         current.move("left");
+        current.decreaseStamina();
       }
     }
-    if (!current.touchRight()) {
+    if (!current.touchRight() && current.getStamina()>0) {
       if (key == 'd') {
         current.move("right");
+        current.decreaseStamina();
       }
     }
 

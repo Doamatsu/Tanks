@@ -6,11 +6,11 @@ public class Tank {
   private float HP;
   private float r;
   public ArrayList<Ammo>Ammos;
-  private float ammoX, ammoY;
   boolean removeAmmo;
   private float rightX, rightY;
   private float leftX, leftY;
   private boolean touchRight = false, touchLeft = false;
+  private float stamina;
 
   public Tank(float x_, float y_, String name_, int HP_) {
     x = x_;
@@ -24,8 +24,8 @@ public class Tank {
     r = .01;
     c = #FF0000;
     Ammos = new ArrayList<Ammo>();
-    ammoX = x+30;
-    ammoY = y-23;
+    stamina = 30;
+
     removeAmmo =false;
   }
   public Tank(float x_, float y_, color c_, String name_, int HP_) {
@@ -44,6 +44,9 @@ public class Tank {
     touchLeft = input;
   }
   //get Methods
+  float getStamina(){
+    return stamina;
+  }
   boolean touchRight() {
     return touchRight;
   }
@@ -178,7 +181,14 @@ public class Tank {
         x-=2;
       }
     }
+    //set methods
+    void resetStamina(){
+      stamina = 30;
+    }
     //remove method
+    void decreaseStamina(){
+      stamina--;
+    }
     void removeAmmo() {
       Ammos.remove(0);
     }
